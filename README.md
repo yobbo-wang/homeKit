@@ -4,7 +4,7 @@
 </p>
 
 <h3 align="center">
-  智能管家在手，天下我有
+  智能管家在手，尽收所有
 </h3>
 
 <p align="center">
