@@ -1,5 +1,7 @@
-/*
-	1. npm i mobx mobx-react --save
-	2. npm i babel-plugin-transform-decorators-legacy babel-preset-react-native-stage-0 --save-dev
+/** application enter */
 
-*/
+import {AppRegistry} from 'react-native';
+import setup from './app/setup';
+import {name as appName} from './app.json';
+
+AppRegistry.registerComponent(appName, () => setup);
