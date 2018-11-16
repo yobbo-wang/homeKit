@@ -1,10 +1,13 @@
 'use strict'
 const authStore = {
-	isRemember: true,
+	isLogin: false,
 	uid: "",
 	pwd: "",
-	token: "",
-	expire: 0
+    Authorization: "",
+    lastRequestDate: "",
+	expire: 0,
+	host: "",
+	port: "",
 }
 
 export default authStore

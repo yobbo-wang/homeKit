@@ -37,7 +37,7 @@ export default class ControlBut extends Component{
 		            <View style={{paddingRight:8}}>
 		                <Image
 		                    style={{width: 24, height: 24, marginLeft: 5}}
-		                    source={require('../../resources/img/add.png')}
+		                    source={require('../../../resources/img/add.png')}
 		                />
 		            </View>
 		        </TouchableHighlight>

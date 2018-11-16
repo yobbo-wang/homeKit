@@ -37,11 +37,7 @@ class AuthController {
 
   	@action
   	setValue(options){
-  		this.data.isRemember = options['isRemember']
-  		this.data.uid = options['uid']
-  		this.data.pwd = options['pwd']
-  		this.data.token = options['token']
-  		this.data.expire = options['expire']
+  		this.data = {...this.data, ...options}
   	}
 
   	// login
@@ -119,6 +115,26 @@ class MachineController {
 	clearToast() {
 		this.data.toastMessage = null;
 	}
+
+    // getApiState
+    @action
+    async getApiState(url, options) {
+        const Header = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + options.authorization
+            }
+        }
+        try {
+            const response = await fetch(url, Header)
+            return await response.json()
+        } catch (err) {
+            await this.toast('error', '请重新登录')
+            await this.clearToast();
+        }
+    }
 }
 
 export default new store()

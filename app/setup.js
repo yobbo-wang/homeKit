@@ -11,7 +11,7 @@ import React, {Component} from 'react'
 import App from './containers/App'
 import Login from './page/login/index' 
 import { Provider } from 'react-redux'
-import store from '../mox/store'
+import rootStore from '../mox/rootStore'
 
 export default class setup extends Component{
     constructor(props) {
@@ -24,9 +24,9 @@ export default class setup extends Component{
     }    
 
     render() {
-        console.log(store)
+        console.log(rootStore)
         return (
-            <Provider store={store}>
+            <Provider rootStore={rootStore}>
                 <Login />
             </Provider>
         )

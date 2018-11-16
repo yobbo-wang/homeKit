@@ -18,10 +18,11 @@ import {
 	StyleSheet,
 	Image, 
 } from 'react-native'
-import {observer} from 'mobx-react'
+import { inject, observer } from 'mobx-react/native'
 // import { withNavigation } from 'react-navigation'
 
 @observer
+@inject('store')
 class Login extends React.Component {
 	constructor(props) {
     	super(props)

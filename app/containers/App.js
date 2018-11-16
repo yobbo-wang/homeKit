@@ -7,30 +7,54 @@
  * @copyright Copyright © 2016 yobbo
  */
  'use strict'
-import React, {Component} from 'react'
+import React from 'react'
 import { Platform,
-StyleSheet,
-  View,
   Text, 
   Image,
-  TouchableHighlight  
 } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator, createSwitchNavigator } from 'react-navigation'
 import Splash from './Splash'
 import HomeContainer from './Home'
 import ControlContainer from './Control'
-import MyContainer from './My'
+import AutoContainer from './Auto'
 import Login from '../page/login/index'
 import {theme} from '../../resources/styles/com-styles.js'
 import {tabBarLabelStyles} from '../../resources/styles/com-styles.js'
-import ControlBut from './ControlBut'
+import ControlBut from './btn/ControlBut'
+import { inject, observer } from 'mobx-react/native'
 
-export default class App extends Component{
+@observer
+@inject('rootStore')
+export default class App extends React.Component{
 	constructor(props) {
       super(props)
       this.state = {
       }
   	} 
+
+  	// 查看是否已登录
+    async componentWillMount() {
+	    try{
+	        const storageStore = this.props.rootStore.storageStore
+            const authorization = await storageStore.constructor.load('Authorization') // load Authorization
+            const expire = await storageStore.constructor.load('expire') // load expire
+            const lastRequestDate = await storageStore.constructor.load('lastRequestDate') // load lastRequestDate
+            const host = await storageStore.constructor.load('host') // host
+            const port = await storageStore.constructor.load('port') // port
+            if(authorization && lastRequestDate && new Date(lastRequestDate).setSeconds(expire) > new Date().getTime()){ // token 有效
+                await this.props.rootStore.authStore.setValue({
+                    isLogin: true,
+                    authorization: authorization,
+                    expire: expire,
+                    lastRequestDate: lastRequestDate,
+                    host: host,
+                    port: port
+                })
+            }
+        } catch (error){
+	        return false;
+        }
+    }
 
   	render() {
     	return <AppNavigator/>
@@ -64,9 +88,9 @@ const TabNavigator = createBottomTabNavigator(
       screen: ControlContainer,
       navigationOptions: () => tabOptions('智能控制', require('../../resources/img/control.png'))
     },
-    ScreenMy: {
-      screen: MyContainer,
-      navigationOptions: () => tabOptions('我的', require('../../resources/img/ic_my.png'))
+    ScreenAuto: {
+      screen: AutoContainer,
+      navigationOptions: () => tabOptions('自动化', require('../../resources/img/ic_my.png'))
     },
   },
   {
@@ -116,9 +140,9 @@ TabNavigator.navigationOptions = ({ navigation }) => {
         headerRight: <ControlBut />,
         ...headerObj
     } 
-  }else if(headerTitle == 'ScreenMy'){
+  }else if(headerTitle == 'ScreenAuto'){
     return {
-        headerTitle: '我的',
+        headerTitle: '自动化',
         ...headerObj
     } 
   }else if(headerTitle == 'ScreenLogin'){
@@ -142,6 +166,8 @@ const AppNavigator = createSwitchNavigator({
     Splash: Splash,
     Home: AppStack,
     Login: LoginStack
+},{
+    initialRouteName: 'Splash'
 })
 
 

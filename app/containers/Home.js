@@ -6,14 +6,26 @@
  * @email yobbo_wang@163.com
  * @copyright Copyright © 2016 yobbo
  */
+/*
+try{
+			const authStore = this.props.rootStore.authStore
+            const authorization = authStore.Authorization
+            const isLogin = authStore.isLogin
+			if(isLogin){
+            	// 发送请求验证token
+				const url = "http://" + authStore.host + ":" + authStore.port + "/api/"
+				const response = await this.props.rootStore.machineStore.getApiState(url, {authorization: authorization})
+				if(response.code === 200){
+
+				}
+			}
+        }catch (error){}
+ */
  'use strict'
 import React, {Component} from 'react'
-import { 
-	StyleSheet,
+import {
 	View,
-	Text, 
-	Image,
-  TouchableHighlight 
+	Text,
 }from 'react-native'
 
 class HomeContainer extends Component {

@@ -1,6 +1,6 @@
 /**
  * learnBestTools
- * App 启动图组件
+ * App 启动图组件（用于做推广使用）
  * @author yobbo
  * @date 2018-04-01
  * @email yobbo_wang@163.com
@@ -15,7 +15,10 @@ import NavigationUtil from '../util/NavigationUtil'
 const maxHeight = Dimensions.get('window').height
 const maxWidth = Dimensions.get('window').width
 const splashImg = require('../../resources/img/splash.png') //TODO上线后，动态更改启动图
+import { inject, observer } from 'mobx-react/native'
 
+@observer
+@inject('rootStore')
 export default class Splash extends Component{
 	static navigationOptions = {
     	header: null
@@ -28,17 +31,20 @@ export default class Splash extends Component{
 	    }
   	}
 
-  	componentDidMount() {
-  		const { navigate } = this.props.navigation
-  		debugger
+	componentDidMount() {
+        const isLogin = this.props.rootStore.authStore.isLogin
+  		const { navigate } = this.props.navigation  // TODO
 	    Animated.timing(this.state.bounceValue, {
 	      toValue: 1.2,
 	      duration: 1000
 	    }).start()
 	    SplashScreen.hide()
 	    this.timer = setTimeout(() => {
-	      	// NavigationUtil.reset(this.props.navigation, 'TabNavigator')
-	      	NavigationUtil.reset(this.props.navigation, 'Login')
+			if(isLogin) {
+                NavigationUtil.reset(this.props.navigation, 'TabNavigator')
+			}else{
+                NavigationUtil.reset(this.props.navigation, 'Login')
+			}
 	    }, 1000)
   	}
 
