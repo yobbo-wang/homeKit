@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>learnBestTools.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>2C2971007A3B2653D972903BC580BEE099FE3F6F</string>
+				<key>dateExpires</key>
+				<string>2018/9/1</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>7982H5B979.com.js.auyf</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>7982H5B979</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>7982H5B979.com.js.auyf</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>learnBestTools.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>a49590b7-ca55-4df3-9c30-3fe8b2fa129e</string>
+				<key>name</key>
+				<string>21_common_hoc_042</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>7982H5B979</string>
+				<key>name</key>
+				<string>Haser Jiang</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
