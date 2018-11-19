@@ -9,6 +9,8 @@ import { ToastStyles } from 'react-native-toaster';
 
 import authStore from './authStore';
 import machineStore from './machineStore';
+import themeStore from './themeStore';
+import themeFactory from '../resources/styles/themeFactory';
 
 // init storage
 const storage = new Storage({
@@ -20,12 +22,31 @@ const storage = new Storage({
 
 class store{
 	constructor() {
-		this.storageStore = new StorageController
-		this.authStore = new AuthController(authStore, this)
-		this.machineStore = new MachineController(machineStore, this)
+		this.storageStore = new StorageController;
+		this.authStore = new AuthController(authStore, this);
+		this.machineStore = new MachineController(machineStore, this);
+		this.themeStore = new ThemeController(themeStore, this);
 	}
 }
 
+class ThemeController {
+    @observable data = {};
+    constructor(data, rootStore) {
+        this.data = data;
+        this.rootStore = rootStore;
+        this._loadTheme();
+    }
+
+	_loadTheme = async () => {
+        const themeFlags = await AsyncStorage.getItem('ThemeFlags');
+
+	}
+
+    @action saveTheme(data) {
+        return this.data = {...this.data, ...data}
+    }
+
+}
 
 class AuthController {
 	@observable data = {}
@@ -35,8 +56,7 @@ class AuthController {
     	this.rootStore = rootStore
   	}
 
-  	@action
-  	setValue(options){
+  	@action setValue(options){
   		this.data = {...this.data, ...options}
   	}
 
@@ -72,7 +92,6 @@ class StorageController {
   	}
 
 	@action static async save(key, data, expires) {
-        await storage.save({ key, data, expires });
 		return await storage.save({ key, data, expires });
 	}
 
