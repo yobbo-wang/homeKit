@@ -7,6 +7,7 @@ import {
     TextInput,
     Text,
     Image,
+    StatusBar
 } from 'react-native';
 import { inject, observer } from 'mobx-react/native'
 
@@ -22,13 +23,33 @@ class SignInScreen extends React.Component {
         }
     }
 
+    static navigationOptions = ({ navigation, screenProps}) => {
+        const themeColor = screenProps.themeBackgroundColor;
+        return {
+            title: '登录',
+            headerStyle:{
+                backgroundColor: themeColor
+            },
+            tabBarLabel: ({ tintColor, fontSize}) => (
+                <Text style={[{color: tintColor == '#999999' ? tintColor : themeColor}, styles.tabBarLabelText]}>登录</Text>
+            ),
+            headerTitleStyle: {
+                color: '#fff',
+                fontSize: 20,
+                alignSelf: 'center',
+                alignItems: 'center',
+            },
+            headerTintColor: '#fff'
+        }
+    };
+
     onChangeUsername = (uid) => {
         this.setState({ uid })
-    }
+    };
 
     onChangePassword = (pwd) => {
         this.setState({ pwd })
-    }
+    };
 
     async onBlur(type) {
 
@@ -38,14 +59,13 @@ class SignInScreen extends React.Component {
 
     }
 
-    static navigationOptions = {
-        title: '登录',
-    };
-
     render() {
         const buttonDisabled = this.state.uid.length == 0 || this.state.pwd.length == 0
         return (
             <ScrollView contentContainerStyle={styles.container} >
+                <StatusBar
+                    backgroundColor={'#fff'}
+                    barStyle={'light-content'} />
                 <View style={styles.hostInfo}>
                     <TextInput
                         style={styles.Input60}

@@ -7,10 +7,10 @@
  * @copyright Copyright © 2016 yobbo
  */
 'use strict'
-import React, {Component} from 'react'
-import App from './containers/App'
-import { Provider } from 'mobx-react'
-import rootStore from '../mox/rootStore'
+import React, {Component} from 'react';
+import App from './containers/App';
+import { Provider } from 'mobx-react';
+import rootStore from '../mox/rootStore';
 
 export default class setup extends Component{
     constructor(props) {

@@ -10,7 +10,7 @@ import { ToastStyles } from 'react-native-toaster';
 import authStore from './authStore';
 import machineStore from './machineStore';
 import themeStore from './themeStore';
-import themeFactory from '../resources/styles/themeFactory';
+import themeFactory, {ThemeFlags} from '../resources/styles/themeFactory';
 
 // init storage
 const storage = new Storage({
@@ -38,11 +38,15 @@ class ThemeController {
     }
 
 	_loadTheme = async () => {
-        const themeFlags = await AsyncStorage.getItem('ThemeFlags');
-
+        let themeFlags = await AsyncStorage.getItem('ThemeFlags');
+		if(!themeFlags){
+            themeFlags = "Default";
+		}
+		const theme = themeFactory.createTheme(ThemeFlags[themeFlags].color);
+		this.changeTheme(theme);
 	}
 
-    @action saveTheme(data) {
+    @action changeTheme(data) {
         return this.data = {...this.data, ...data}
     }
 

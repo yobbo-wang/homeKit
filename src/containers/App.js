@@ -8,10 +8,14 @@
  */
  'use strict';
 import React, {Component} from 'react';
-import { Platform } from 'react-native';
+import {
+    Platform,
+    StatusBar,
+} from 'react-native';
 import { StackNavigator, TabNavigator, SwitchNavigator } from 'react-navigation';
 import HomeContainer from './HomeContainer';
-import LearnContainer from './LearnContainer';
+import AutoContainer from './AutoContainer';
+import ControlContainer from './ControlContainer';
 import SignInScreen from '../page/login/loginScreen';
 import Splash from './Splash';
 import { inject, observer } from 'mobx-react/native'
@@ -25,18 +29,31 @@ export default class App extends Component{
 
     }
 
+    // 改变状态栏样式
+    _onNavigationStateChange = () =>{
+        if(Platform.OS == 'android'){
+            StatusBar.setBackgroundColor("white", true);
+        }else{
+            StatusBar.setBarStyle("light-content", true);
+        }
+    }
+
     render() {
         return(
-            <AppNavigator />
+            <AppNavigator screenProps = {this.props.rootStore.themeStore.data}
+                          onNavigationStateChange={this._onNavigationStateChange}/>
         )
     }
 }
+
+
 
 //底部导航栏
 const TabContainer = TabNavigator(
   {
     Home: { screen: HomeContainer},
-    Learn: { screen: LearnContainer },
+    Control: {screen: ControlContainer},
+    Auto: { screen: AutoContainer },
   },
   {
     lazy: true,

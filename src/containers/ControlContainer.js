@@ -1,25 +1,25 @@
 /**
- * learnBestTools
- * 首页入口组件
+ * homeKit
+ * 控制组件入口
  * @author yobbo
  * @date 2018-04-01
  * @email yobbo_wang@163.com
  * @copyright Copyright © 2016 yobbo
  */
- 'use strict'
+'use strict'
 import React, {Component} from 'react'
-import { 
-	StyleSheet,
-	View, 
-	Text, 
-	Image,
-  TouchableHighlight 
+import {
+    StyleSheet,
+    View,
+    Text,
+    Image,
+    TouchableHighlight
 }from 'react-native'
 import { inject, observer } from 'mobx-react/native'
 
 @inject('rootStore')
 @observer
-class HomeContainer extends Component {
+class ControlContainer extends Component {
     constructor(props) {
         super(props)
         this.state ={
@@ -29,20 +29,20 @@ class HomeContainer extends Component {
     static navigationOptions = ({ navigation, screenProps}) => {
         const themeColor = screenProps.themeBackgroundColor;
         return {
-            title: '仪表盘',
+            title: '控制',
             headerStyle:{
                 backgroundColor: themeColor
             },
             tabBarLabel: ({ tintColor, fontSize}) => (
-                <Text style={[{color: tintColor == '#999999' ? tintColor : themeColor}, styles.tabBarLabelText]}>仪表盘</Text>
+                <Text style={[{color: tintColor == '#999999' ? tintColor : themeColor}, styles.tabBarLabelText]}>控制</Text>
             ),
             tabBarIcon: ({ tintColor }) => (
                 <Image style={{width: 26, height: 26,resizeMode: 'contain',
                     tintColor: tintColor == '#999999' ? tintColor : themeColor }}
-                       source={require('../../resources/img/ic_polular.png')} />
+                       source={require('../../resources/img/ic_my.png')} />
             ),
         }
-    };
+    }
 
     render() {
         console.log(this.props.rootStore)
@@ -55,11 +55,11 @@ class HomeContainer extends Component {
 
 const styles = StyleSheet.create({
     tabBarLabelText: {
-        marginBottom: 1.5, 
+        marginBottom: 1.5,
         fontSize: 10,
         textAlign: 'center',
         backgroundColor: 'transparent'
     }
 })
 
-export default (HomeContainer)
+export default (ControlContainer)
