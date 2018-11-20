@@ -40,7 +40,7 @@ class AutoContainer extends Component {
             tabBarIcon: ({ tintColor }) => (
                 <Image style={{width: 26, height: 26,resizeMode: 'contain',
                     tintColor: tintColor == '#999999' ? tintColor : themeColor }}
-                       source={require('../../resources/img/ic_my.png')} />
+                       source={require('../../resources/img/ic_auto.png')} />
             ),
         }
   	};

@@ -121,7 +121,7 @@ class SignInScreen extends React.Component {
     }
 
     _signInAsync = async () => {
-        await this.props.rootStore.storageStore.constructor.save("Authorization", 'AAAAAAAAA', 60 * 1000);
+        await this.props.rootStore.storageStore.constructor.save("Authorization", 'AAAAAAAAA', 6000 * 1000);
         this.props.navigation.navigate('App');
     };
 }
