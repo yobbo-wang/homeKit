@@ -39,12 +39,15 @@ class ThemeController {
 
 	_loadTheme = async () => {
         let themeFlags = await AsyncStorage.getItem('ThemeFlags');
-		if(!themeFlags){
+		if(themeFlags){
+            themeFlags = JSON.parse(themeFlags).rawData;
+		}else{
             themeFlags = "Default";
 		}
+		console.log(themeFlags)
 		const theme = themeFactory.createTheme(ThemeFlags[themeFlags].color);
 		this.changeTheme(theme);
-	}
+	};
 
     @action changeTheme(data) {
         return this.data = {...this.data, ...data}

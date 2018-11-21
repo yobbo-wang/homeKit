@@ -33,10 +33,8 @@ export default class Index extends Component {
                     price='27℃'
                     info={[]}
                     button={{ title: '刷新' }}
-                    containerStyle={{width:'45%', height: '40%', marginRight: 0, borderWidth: 0, borderTopLeftRadius: 5, borderBottomLeftRadius: 5,}}
-                    titleStyle={{fontSize: 16}}
-                    pricingStyle={{fontSize: 11, color: '#232432'}}
-                    wrapperStyle={{fontSize: 12}}
+                    containerStyle={{width:'45%', height: '40%', fontSize: 10, marginRight: 0, borderWidth: 0, borderTopLeftRadius: 5, borderBottomLeftRadius: 5,}}
+                    pricingStyle={{fontSize: 11, color: this.props.rootStore.themeStore.data.themeBackgroundColor}}
                 />
                 <PricingCard
                     color={this.props.rootStore.themeStore.data.themeBackgroundColor}

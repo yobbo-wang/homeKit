@@ -50,7 +50,9 @@ class HomeContainer extends Component {
                     type='ionicon'
                     color='#fff'
                     containerStyle={{padding: 8}}
-                    onPress={() => alert('settings')} />
+                    onPress={() => {
+                        navigation.navigate('Theme');
+                    }} />
             )
         }
     };

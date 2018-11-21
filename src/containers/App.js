@@ -17,6 +17,7 @@ import HomeContainer from './HomeContainer';
 import AutoContainer from './AutoContainer';
 import ControlContainer from './ControlContainer';
 import SignInScreen from '../page/login/loginScreen';
+import CustomTheme from './CustomTheme';
 import Splash from './Splash';
 import { inject, observer } from 'mobx-react/native'
 
@@ -25,8 +26,8 @@ import { inject, observer } from 'mobx-react/native'
 export default class App extends Component{
     constructor(props){
         super(props);
-        this.state = {}
-
+        this.state = {};
+        this._onNavigationStateChange();
     }
 
     // 改变状态栏样式
@@ -40,8 +41,7 @@ export default class App extends Component{
 
     render() {
         return(
-            <AppNavigator screenProps = {this.props.rootStore.themeStore.data}
-                          onNavigationStateChange={this._onNavigationStateChange}/>
+            <AppNavigator screenProps = {this.props.rootStore.themeStore.data} />
         )
     }
 }
@@ -84,6 +84,9 @@ const AppStack = StackNavigator(
       navigationOptions: {
         headerLeft: null
       }
+    },
+    Theme: {
+        screen: CustomTheme,
     }
   },
   {

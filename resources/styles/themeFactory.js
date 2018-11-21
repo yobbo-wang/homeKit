@@ -9,7 +9,7 @@
 'use strict';
 import {
     StyleSheet,
-} from 'react-native'
+} from 'react-native';
 
 export const ThemeFlags = {
     Default: {color: '#3e9ce9', key: '默认'},
@@ -32,8 +32,7 @@ export const ThemeFlags = {
     Brown: {color: '#795548', key: '棕色'},
     Grey: {color: '#9E9E9E', key: '灰色'},
     BlueGrey: {color: '#607D8B', key: '蓝灰色'},
-    Black: {color: '#000000', key: '黑色'}
-}
+};
 
 export default class ThemeFactory {
 
