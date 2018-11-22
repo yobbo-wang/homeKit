@@ -11,42 +11,68 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     View,
-}from 'react-native';
-import { PricingCard,} from 'react-native-elements';
+    ScrollView,
+    Text,
+    Platform,
+    RefreshControl,
+} from 'react-native';
+
 import {inject, observer} from "mobx-react/native";
+import fonts from "react-native-elements/src/config/fonts";
 
 @inject('rootStore')
 @observer
 export default class Index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state ={
+            isLoading: false,
         }
+    }
+
+    _onRefresh() {
+
     }
 
     render() {
         return(
-            <View style={styles.container}>
-                <PricingCard
-                    color={this.props.rootStore.themeStore.data.themeBackgroundColor}
-                    title='温度'
-                    price='27℃'
-                    info={[]}
-                    button={{ title: '刷新' }}
-                    containerStyle={{width:'45%', height: '40%', fontSize: 10, marginRight: 0, borderWidth: 0, borderTopLeftRadius: 5, borderBottomLeftRadius: 5,}}
-                    pricingStyle={{fontSize: 11, color: this.props.rootStore.themeStore.data.themeBackgroundColor}}
-                />
-                <PricingCard
-                    color={this.props.rootStore.themeStore.data.themeBackgroundColor}
-                    title='湿度'
-                    price='23℃'
-                    info={[]}
-                    button={{ title: '刷新' }}
-                    containerStyle={{width:'45%',height: '40%', marginLeft: 0, borderWidth: 0, borderTopRightRadius: 5, borderBottomRightRadius: 5,}}
-                    titleStyle={{fontSize: 16}}
-                    pricingStyle={{fontSize: 11}}
-                />
-            </View>
+            <ScrollView style={styles.container}
+                refreshControl={
+                    <RefreshControl
+                        refreshing = {this.state.isLoading}
+                        onRefresh = {() => this._onRefresh()}
+                        tintColor = {this.props.rootStore.themeStore.data.themeBackgroundColor}
+                        title = "数据提取中..."
+                        titleColor = {this.props.rootStore.themeStore.data.themeBackgroundColor}
+                        colors = {[this.props.rootStore.themeStore.data.themeBackgroundColor,
+                           '#323212',
+                            this.props.rootStore.themeStore.data.themeBackgroundColor]}
+                    />
+                }
+            >
+                <View style={styles.ViewContainer}>
+                    <View style={[{borderRightWidth: 1,
+                        borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
+                        <Text style={[{color: this.props.rootStore.themeStore.data.themeBackgroundColor},styles.CustomTitle]}>温度</Text>
+                        <Text style={styles.pricingPrice}>27℃</Text>
+                    </View>
+                    <View style={[{borderRightWidth: 1,
+                        borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
+                        <Text style={[{color: this.props.rootStore.themeStore.data.themeBackgroundColor},styles.CustomTitle]}>湿度</Text>
+                        <Text style={styles.pricingPrice}>27℃</Text>
+                    </View>
+                    <View style={[{borderRightWidth: 1,
+                        borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
+                        <Text style={[{color: this.props.rootStore.themeStore.data.themeBackgroundColor},styles.CustomTitle]}>湿度</Text>
+                        <Text style={styles.pricingPrice}>27℃</Text>
+                    </View>
+                    <View style={[{borderRightWidth: 1,
+                        borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
+                        <Text style={[{color: this.props.rootStore.themeStore.data.themeBackgroundColor},styles.CustomTitle]}>湿度</Text>
+                        <Text style={styles.pricingPrice}>27℃</Text>
+                    </View>
+                </View>
+            </ScrollView>
         )
     }
 }
@@ -54,6 +80,53 @@ export default class Index extends Component {
 const styles = StyleSheet.create({
     container: {
         flex : 1,
-        flexDirection: 'row',
     },
+    ViewContainer: {
+        flexDirection: "row",
+        margin: 15,
+        marginBottom: 15,
+        backgroundColor: 'white',
+        borderRadius: 5,
+    },
+    CustomTitle: {
+        textAlign: 'center',
+        fontSize: 18,
+        ...Platform.select({
+            ios: {
+                fontWeight: '800',
+            },
+            android: {
+                ...fonts.android.black,
+            },
+        }),
+    },
+    pricingPrice: {
+        textAlign: 'center',
+        marginTop: 10,
+        fontSize: 16,
+        color: '#333',
+        ...Platform.select({
+            ios: {
+                fontWeight: '500',
+            },
+            android: {
+                ...fonts.android.bold,
+            },
+        }),
+    },
+    ViewWapper: {
+        backgroundColor: 'transparent',
+        width: '50%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        padding: 15,
+    },
+    ViewTwo: {
+        backgroundColor: '#532267',
+        width: '50%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex:1,
+    }
 });
