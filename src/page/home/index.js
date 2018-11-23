@@ -51,27 +51,32 @@ export default class Index extends Component {
                 }
             >
                 <View style={styles.ViewContainer}>
-                    <View style=style={[{borderRightWidth: 1,
-                        borderRightColor: '#f3f3f3',backgroundColor: '#28a745'},styles.ViewWapper]}>
-                        <Text style={[{color: '#fff'},styles.CustomTitle]}>温度</Text>
-                        <Text style={styles.pricingPrice}>27℃</Text>
-                        <Text style={styles.pricingPrice}>适宜</Text>
+                    <View style={styles.Viewheader}>
+                        <Text style={{padding: 5,}}>头部</Text>
                     </View>
-                    <View style={[{borderRightWidth: 1,
-                        borderRightColor: '#f3f3f3',backgroundColor: '#FFD700'},styles.ViewWapper]}>
-                        <Text style={[{color: '#fff'},styles.CustomTitle]}>湿度</Text>
-                        <Text style={styles.pricingPrice}>27℃</Text>
-                        <Text style={styles.pricingPrice}>潮湿</Text>
-                    </View>
-                    <View style={[{borderRightWidth: 1,
-                        borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
-                        <Text style={[{color: this.props.rootStore.themeStore.data.themeBackgroundColor},styles.CustomTitle]}>湿度</Text>
-                        <Text style={styles.pricingPrice}>27℃</Text>
-                    </View>
-                    <View style={[{borderRightWidth: 1,
-                        borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
-                        <Text style={[{color: this.props.rootStore.themeStore.data.themeBackgroundColor},styles.CustomTitle]}>湿度</Text>
-                        <Text style={styles.pricingPrice}>27℃</Text>
+                    <View style={{flexDirection: "row",marginTop: 5,}}>
+                        <View style={[{borderRightWidth: 1,
+                            borderRightColor: '#f3f3f3',backgroundColor: '#28a745'},styles.ViewWapper]}>
+                            <Text style={[{color: '#fff'},styles.CustomTitle]}>温度</Text>
+                            <Text style={styles.pricingPrice}>27℃</Text>
+                            <Text style={styles.pricingPrice}>适宜</Text>
+                        </View>
+                        <View style={[{borderRightWidth: 1,
+                            borderRightColor: '#f3f3f3',backgroundColor: '#FFD700'},styles.ViewWapper]}>
+                            <Text style={[{color: '#fff'},styles.CustomTitle]}>湿度</Text>
+                            <Text style={styles.pricingPrice}>27℃</Text>
+                            <Text style={styles.pricingPrice}>潮湿</Text>
+                        </View>
+                        <View style={[{borderRightWidth: 1,
+                            borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
+                            <Text style={[{color: this.props.rootStore.themeStore.data.themeBackgroundColor},styles.CustomTitle]}>湿度</Text>
+                            <Text style={styles.pricingPrice}>27℃</Text>
+                        </View>
+                        <View style={[{borderRightWidth: 1,
+                            borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
+                            <Text style={[{color: this.props.rootStore.themeStore.data.themeBackgroundColor},styles.CustomTitle]}>湿度</Text>
+                            <Text style={styles.pricingPrice}>27℃</Text>
+                        </View>
                     </View>
                 </View>
             </ScrollView>
@@ -84,11 +89,21 @@ const styles = StyleSheet.create({
         flex : 1,
     },
     ViewContainer: {
-        flexDirection: "row",
         margin: 15,
         marginBottom: 15,
         backgroundColor: 'white',
         borderRadius: 5,
+        ...Platform.select({
+            ios: {
+                shadowColor: '#A9A9A9',
+                shadowOffset: { height: 0, width: 0 },
+                shadowOpacity: 0.5,
+                shadowRadius: 3,
+            },
+            android: {
+                elevation: 1,
+            },
+        }),
     },
     CustomTitle: {
         textAlign: 'center',
@@ -124,11 +139,8 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 15,
     },
-    ViewTwo: {
-        backgroundColor: '#532267',
-        width: '50%',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flex:1,
+    Viewheader: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#DCDCDC',
     }
 });
