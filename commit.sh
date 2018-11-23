@@ -7,6 +7,7 @@ git add package.json
 git add package-lock.json
 git add yarn.lock
 git add README.md
+git add react.svg
 git add src/*
 git add resources/*
 git add mox/*
