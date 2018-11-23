@@ -42,7 +42,7 @@ export default class Index extends Component {
                         refreshing = {this.state.isLoading}
                         onRefresh = {() => this._onRefresh()}
                         tintColor = {this.props.rootStore.themeStore.data.themeBackgroundColor}
-                        title = "数据提取中..."
+                        title = "数据同步中..."
                         titleColor = {this.props.rootStore.themeStore.data.themeBackgroundColor}
                         colors = {[this.props.rootStore.themeStore.data.themeBackgroundColor,
                            '#323212',
@@ -51,15 +51,17 @@ export default class Index extends Component {
                 }
             >
                 <View style={styles.ViewContainer}>
-                    <View style={[{borderRightWidth: 1,
-                        borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
-                        <Text style={[{color: this.props.rootStore.themeStore.data.themeBackgroundColor},styles.CustomTitle]}>温度</Text>
+                    <View style=style={[{borderRightWidth: 1,
+                        borderRightColor: '#f3f3f3',backgroundColor: '#28a745'},styles.ViewWapper]}>
+                        <Text style={[{color: '#fff'},styles.CustomTitle]}>温度</Text>
                         <Text style={styles.pricingPrice}>27℃</Text>
+                        <Text style={styles.pricingPrice}>适宜</Text>
                     </View>
                     <View style={[{borderRightWidth: 1,
-                        borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
-                        <Text style={[{color: this.props.rootStore.themeStore.data.themeBackgroundColor},styles.CustomTitle]}>湿度</Text>
+                        borderRightColor: '#f3f3f3',backgroundColor: '#FFD700'},styles.ViewWapper]}>
+                        <Text style={[{color: '#fff'},styles.CustomTitle]}>湿度</Text>
                         <Text style={styles.pricingPrice}>27℃</Text>
+                        <Text style={styles.pricingPrice}>潮湿</Text>
                     </View>
                     <View style={[{borderRightWidth: 1,
                         borderRightColor: '#f3f3f3',},styles.ViewWapper]}>
@@ -102,9 +104,9 @@ const styles = StyleSheet.create({
     },
     pricingPrice: {
         textAlign: 'center',
-        marginTop: 10,
-        fontSize: 16,
-        color: '#333',
+        marginTop: 5,
+        // fontSize: 16,
+        color: '#fff',
         ...Platform.select({
             ios: {
                 fontWeight: '500',
